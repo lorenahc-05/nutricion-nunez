@@ -1,0 +1,12 @@
+.splash {
+  width: 100%;
+  height: 100dvh;
+  background: #2d5a3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-logo svg {
+  overflow: visible;
+}

@@ -1,0 +1,43 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid #ede8e1;
+  display: flex;
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: 3px;
+  transition: opacity 0.15s;
+}
+
+.nav-item i {
+  font-size: 22px;
+  color: #aaa;
+}
+
+.nav-item span {
+  font-size: 10px;
+  color: #aaa;
+}
+
+.nav-item.active i {
+  color: #2d5a3d;
+}
+
+.nav-item.active span {
+  color: #2d5a3d;
+  font-weight: 500;
+}

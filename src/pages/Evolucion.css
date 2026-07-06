@@ -1,0 +1,150 @@
+.evolucion-page {
+  min-height: 100dvh;
+  background: #f9f6f1;
+  padding-bottom: 80px;
+}
+
+.evolucion-header {
+  background: #2d5a3d;
+  padding: 50px 20px 0;
+}
+
+.evolucion-header h1 {
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.evolucion-header p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  padding-bottom: 16px;
+}
+
+.stats-row {
+  background: #2d5a3d;
+  padding: 0 16px 16px;
+  display: flex;
+  gap: 10px;
+}
+
+.stat-card {
+  flex: 1;
+  background: rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.stat-delta {
+  font-size: 11px;
+}
+
+.stat-delta.good { color: #7ed9a8; }
+.stat-delta.bad { color: #ffaa88; }
+.stat-sub { font-size: 11px; color: rgba(255,255,255,0.65); }
+
+.evolucion-content {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chart-card, .registro-card, .historial-card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #ede8e1;
+  padding: 16px;
+}
+
+.chart-card h4, .registro-card h4, .historial-card h4 {
+  font-size: 11px;
+  font-weight: 500;
+  color: #2d5a3d;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 14px;
+}
+
+.registro-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.peso-input {
+  flex: 1;
+  font-size: 22px;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid #ede8e1;
+  border-radius: 10px;
+  padding: 10px;
+  background: #f9f6f1;
+  color: #1a1a1a;
+  outline: none;
+}
+
+.peso-input:focus { border-color: #2d5a3d; }
+
+.peso-unit {
+  font-size: 16px;
+  color: #aaa;
+}
+
+.btn-guardar {
+  background: #2d5a3d;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.historial-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid #f0ebe3;
+}
+
+.historial-row:last-child { border-bottom: none; }
+
+.historial-fecha { font-size: 12px; color: #aaa; }
+.historial-peso { font-size: 14px; font-weight: 500; color: #1a1a1a; }
+
+.historial-delta {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.historial-delta.down { background: #e8f4ee; color: #2d5a3d; }
+.historial-delta.up { background: #fdecea; color: #a33; }
+
+.historial-empty {
+  font-size: 13px;
+  color: #aaa;
+  text-align: center;
+  padding: 20px 0;
+}

@@ -1,0 +1,185 @@
+.menu-page {
+  min-height: 100dvh;
+  background: #f9f6f1;
+  padding-bottom: 80px;
+}
+
+.menu-topbar {
+  background: #2d5a3d;
+  padding: 50px 20px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e8824a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.menu-topbar-text {
+  flex: 1;
+}
+
+.menu-topbar-text p {
+  color: rgba(255,255,255,0.65);
+  font-size: 11px;
+  margin: 0;
+}
+
+.menu-topbar-text h2 {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.menu-topbar > .ti {
+  color: rgba(255,255,255,0.7);
+  font-size: 22px;
+}
+
+.week-strip {
+  background: #2d5a3d;
+  padding: 0 16px 14px;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+}
+
+.week-strip::-webkit-scrollbar { display: none; }
+
+.day-pill {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 20px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  gap: 2px;
+}
+
+.day-pill span:first-child {
+  font-size: 10px;
+  color: rgba(255,255,255,0.6);
+}
+
+.day-pill span:last-child {
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.day-pill.active {
+  background: #e8824a;
+}
+
+.menu-content {
+  padding: 14px 14px 0;
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: #2d5a3d;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 16px 0 6px;
+}
+
+.meal-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #ede8e1;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: border-color 0.15s;
+}
+
+.meal-card:active {
+  border-color: #2d5a3d;
+}
+
+.meal-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #f0ebe3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.meal-icon i {
+  font-size: 19px;
+  color: #2d5a3d;
+}
+
+.meal-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.meal-info h4 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin: 0 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meal-info p {
+  font-size: 11px;
+  color: #aaa;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meal-card > .ti-chevron-right {
+  font-size: 16px;
+  color: #ccc;
+  flex-shrink: 0;
+}
+
+.menu-empty {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px;
+  text-align: center;
+}
+
+.menu-empty i {
+  font-size: 48px;
+  color: #ccc;
+}
+
+.menu-empty p {
+  font-size: 15px;
+  color: #aaa;
+  line-height: 1.6;
+}

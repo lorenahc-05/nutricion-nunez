@@ -1,0 +1,125 @@
+.compra-page {
+  min-height: 100dvh;
+  background: #f9f6f1;
+  padding-bottom: 80px;
+}
+
+.compra-header {
+  background: #2d5a3d;
+  padding: 50px 20px 18px;
+}
+
+.compra-header h1 {
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.compra-header p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+}
+
+.compra-progress {
+  background: #2d5a3d;
+  padding: 0 20px 16px;
+}
+
+.progress-track {
+  background: rgba(255,255,255,0.2);
+  border-radius: 8px;
+  height: 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: #e8824a;
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.3s;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+.progress-labels span {
+  font-size: 11px;
+  color: rgba(255,255,255,0.65);
+}
+
+.compra-content {
+  padding: 12px 14px 0;
+}
+
+.compra-item {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #ede8e1;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.compra-item.checked {
+  opacity: 0.45;
+}
+
+.compra-item.checked span {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.compra-item span {
+  font-size: 13px;
+  color: #1a1a1a;
+}
+
+.check-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid #ccc;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.check-circle.done {
+  background: #2d5a3d;
+  border-color: #2d5a3d;
+}
+
+.check-circle.done i {
+  color: #fff;
+  font-size: 13px;
+}
+
+.compra-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  gap: 12px;
+  text-align: center;
+}
+
+.compra-empty i {
+  font-size: 48px;
+  color: #ccc;
+}
+
+.compra-empty p {
+  font-size: 15px;
+  color: #aaa;
+}
