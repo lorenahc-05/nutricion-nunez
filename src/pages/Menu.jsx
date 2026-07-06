@@ -12,12 +12,24 @@ const TOMAS = [
   { key: 'cena', label: 'Cena', icon: 'ti-moon' },
 ]
 
+function useUserName() {
+  const [name, setName] = useState('')
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      supabase.from('profiles').select('nombre').eq('id', user.id).single()
+        .then(({ data }) => { if (data) setName(data.nombre || '') })
+    })
+  }, [])
+  return name
+}
+
 export default function Menu() {
   const [dias, setDias] = useState([])
   const [diaActivo, setDiaActivo] = useState(0)
   const [platos, setPlatos] = useState([])
   const [loading, setLoading] = useState(true)
   const [selectedPlato, setSelectedPlato] = useState(null)
+  const userName = useUserName()
 
   useEffect(() => {
     fetchMenu()
@@ -26,7 +38,6 @@ export default function Menu() {
   async function fetchMenu() {
     const { data: { user } } = await supabase.auth.getUser()
 
-    // Busca la asignación activa
     const { data: asignacion } = await supabase
       .from('asignaciones')
       .select('menu_id')
@@ -36,7 +47,6 @@ export default function Menu() {
 
     if (!asignacion) { setLoading(false); return }
 
-    // Carga los días
     const { data: diasData } = await supabase
       .from('menu_dias')
       .select('*')
@@ -85,7 +95,7 @@ export default function Menu() {
         <div className="menu-avatar">LH</div>
         <div className="menu-topbar-text">
           <p>Hola,</p>
-          <h2>{useUserName()}</h2>
+          <h2>{userName}</h2>
         </div>
         <i className="ti ti-bell" />
       </div>
@@ -141,15 +151,4 @@ export default function Menu() {
       <BottomNav />
     </div>
   )
-}
-
-function useUserName() {
-  const [name, setName] = useState('')
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      supabase.from('profiles').select('nombre').eq('id', user.id).single()
-        .then(({ data }) => { if (data) setName(data.nombre || '') })
-    })
-  }, [])
-  return name
 }
