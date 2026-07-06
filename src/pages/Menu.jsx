@@ -81,11 +81,13 @@ export default function Menu() {
   if (loading) return <div className="loading"><div className="spinner" /></div>
 
   if (dias.length === 0) return (
-    <div className="menu-empty">
-      <i className="ti ti-clipboard-list" />
-      <p>Aún no tienes ningún menú asignado.<br />Victoria te lo asignará pronto.</p>
+    <>
+      <div className="menu-empty">
+        <i className="ti ti-clipboard-list" />
+        <p>Aún no tienes ningún menú asignado.<br />Victoria te lo asignará pronto.</p>
+      </div>
       <BottomNav />
-    </div>
+    </>
   )
 
   return (
