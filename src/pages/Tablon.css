@@ -1,175 +1,69 @@
 .tablon {
   min-height: 100dvh;
-  background: #fff;
+  background: #f9f6f1;
   padding-bottom: 80px;
 }
 
-.tablon-header {
-  padding: 54px 18px 16px;
+.tablon-topbar {
   background: #fff;
-}
-
-.tablon-header h1 {
-  font-size: 26px;
-  font-weight: 500;
-  color: #1a1a1a;
-  margin-bottom: 2px;
-}
-
-.tablon-header p {
-  font-size: 13px;
-  color: #aaa;
-  text-transform: capitalize;
-}
-
-.tablon-content {
-  display: flex;
-  flex-direction: column;
-}
-
-/* CITA */
-.cita-card {
-  background: #2d5a3d;
-  padding: 20px 18px 22px;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 0;
-}
-
-.cita-label {
-  font-size: 10px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.55);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 12px;
-}
-
-.cita-date {
-  font-size: 26px;
-  font-weight: 500;
-  color: #fff;
-  line-height: 1.2;
-  margin-bottom: 6px;
-  text-transform: capitalize;
-}
-
-.cita-sub {
-  font-size: 13px;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 16px;
-}
-
-.cita-footer {
+  padding: 50px 18px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.cita-chip {
-  background: rgba(255,255,255,0.12);
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-size: 12px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.cita-avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: #e8824a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: 500;
-  color: #fff;
-}
-
-/* POSTS */
-.post-card {
-  display: flex;
-  gap: 14px;
-  padding: 16px 18px;
-  border-bottom: 1px solid #f0ebe3;
-  align-items: flex-start;
-}
-
-.post-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.post-icon i {
+.tablon-topbar h1 {
   font-size: 22px;
-}
-
-.post-body {
-  flex: 1;
-}
-
-.post-tag {
-  font-size: 10px;
-  font-weight: 500;
-  color: #e8824a;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  margin-bottom: 3px;
-  display: block;
-}
-
-.post-body h3 {
-  font-size: 15px;
   font-weight: 500;
   color: #1a1a1a;
-  line-height: 1.3;
-  margin-bottom: 4px;
 }
 
-.post-body p {
-  font-size: 13px;
-  color: #888;
-  line-height: 1.5;
-  margin-bottom: 6px;
-}
-
-.post-date {
-  font-size: 12px;
-  color: #aaa;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-/* LOADING */
-.loading {
-  min-height: 100dvh;
+.tablon-notif {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f0ebe3;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid #e0dbd4;
-  border-top-color: #2d5a3d;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
+.tablon-notif i { font-size: 17px; color: #888; }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+.menu-selector { padding: 0 18px 12px; background: #fff; }
+.menu-selector p { font-size: 10px; font-weight: 500; color: #aaa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.menu-selector-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.menu-selector-btn { padding: 5px 14px; border-radius: 20px; border: 1px solid #e0dbd4; background: #fff; font-size: 12px; color: #888; cursor: pointer; transition: all 0.15s; }
+.menu-selector-btn.active { background: #2d5a3d; border-color: #2d5a3d; color: #fff; }
+
+.hero-card { position: relative; height: 180px; background: #2d5a3d; display: flex; flex-direction: column; justify-content: flex-end; padding: 16px; overflow: hidden; }
+.hero-badge { position: absolute; top: 12px; right: 12px; background: #e8824a; color: #fff; font-size: 10px; font-weight: 500; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; }
+.hero-tag { font-size: 10px; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.hero-card h3 { font-size: 22px; font-weight: 500; color: #fff; line-height: 1.2; margin-bottom: 4px; }
+.hero-card p { font-size: 12px; color: rgba(255,255,255,0.7); }
+.hero-dots { display: flex; gap: 4px; margin-top: 10px; }
+.hero-dots span { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.35); }
+.hero-dots span.active { background: #fff; width: 14px; border-radius: 3px; }
+
+.section-label { font-size: 11px; font-weight: 500; color: #888; text-transform: uppercase; letter-spacing: 0.08em; padding: 14px 14px 8px; }
+
+.tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 14px; }
+
+.tip-mini { border-radius: 14px; overflow: hidden; position: relative; height: 110px; display: flex; flex-direction: column; justify-content: flex-end; cursor: pointer; }
+.tip-mini-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 55%); }
+.tip-mini-badge { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.2); color: #fff; font-size: 9px; font-weight: 500; padding: 2px 7px; border-radius: 20px; text-transform: uppercase; z-index: 2; }
+.tip-mini-content { position: relative; z-index: 2; padding: 8px 10px; }
+.tip-mini-content .tag { font-size: 9px; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 2px; display: block; }
+.tip-mini-content h4 { font-size: 13px; font-weight: 500; color: #fff; line-height: 1.25; }
+
+.evento-card { background: #e8824a; border-radius: 14px; margin: 10px 14px 0; padding: 14px; display: flex; gap: 12px; align-items: flex-start; }
+.evento-date { background: rgba(255,255,255,0.2); border-radius: 10px; padding: 8px 10px; text-align: center; flex-shrink: 0; min-width: 42px; }
+.evento-date .day { font-size: 20px; font-weight: 500; color: #fff; line-height: 1; }
+.evento-date .month { font-size: 10px; color: rgba(255,255,255,0.8); text-transform: uppercase; }
+.evento-body .tag { font-size: 10px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 2px; display: block; }
+.evento-body h4 { font-size: 14px; font-weight: 500; color: #fff; line-height: 1.3; margin-bottom: 2px; }
+.evento-body p { font-size: 12px; color: rgba(255,255,255,0.75); }
+
+.loading { min-height: 100dvh; display: flex; align-items: center; justify-content: center; }
+.spinner { width: 32px; height: 32px; border: 3px solid #e0dbd4; border-top-color: #2d5a3d; border-radius: 50%; animation: spin 0.7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }

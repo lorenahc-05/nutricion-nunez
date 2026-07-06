@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { supabase } from '../lib/supabase'
+import { useState } from 'react'
+import { MENUS, PERFIL } from '../data/menus'
 import BottomNav from '../components/BottomNav'
 import RecipeModal from '../components/RecipeModal'
 import './Menu.css'
@@ -12,83 +12,14 @@ const TOMAS = [
   { key: 'cena', label: 'Cena', icon: 'ti-moon' },
 ]
 
-function useUserName() {
-  const [name, setName] = useState('')
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      supabase.from('profiles').select('nombre').eq('id', user.id).single()
-        .then(({ data }) => { if (data) setName(data.nombre || '') })
-    })
-  }, [])
-  return name
-}
+const diasLabels = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom']
 
-export default function Menu() {
-  const [dias, setDias] = useState([])
+export default function Menu({ menuActivo }) {
   const [diaActivo, setDiaActivo] = useState(0)
-  const [platos, setPlatos] = useState([])
-  const [loading, setLoading] = useState(true)
   const [selectedPlato, setSelectedPlato] = useState(null)
-  const userName = useUserName()
 
-  useEffect(() => {
-    fetchMenu()
-  }, [])
-
-  async function fetchMenu() {
-    const { data: { user } } = await supabase.auth.getUser()
-
-    const { data: asignacion } = await supabase
-      .from('asignaciones')
-      .select('menu_id')
-      .eq('cliente_id', user.id)
-      .eq('activo', true)
-      .single()
-
-    if (!asignacion) { setLoading(false); return }
-
-    const { data: diasData } = await supabase
-      .from('menu_dias')
-      .select('*')
-      .eq('menu_id', asignacion.menu_id)
-      .order('numero_dia')
-
-    if (diasData) {
-      setDias(diasData)
-      fetchPlatos(diasData[0].id)
-    }
-
-    setLoading(false)
-  }
-
-  async function fetchPlatos(diaId) {
-    const { data } = await supabase
-      .from('tomas')
-      .select(`*, platos(*)`)
-      .eq('dia_id', diaId)
-      .order('tipo')
-
-    if (data) setPlatos(data)
-  }
-
-  function handleDia(index, diaId) {
-    setDiaActivo(index)
-    fetchPlatos(diaId)
-  }
-
-  const diasLabels = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom']
-
-  if (loading) return <div className="loading"><div className="spinner" /></div>
-
-  if (dias.length === 0) return (
-    <>
-      <div className="menu-empty">
-        <i className="ti ti-clipboard-list" />
-        <p>Aún no tienes ningún menú asignado.<br />Victoria te lo asignará pronto.</p>
-      </div>
-      <BottomNav />
-    </>
-  )
+  const menu = MENUS[menuActivo]
+  const dia = menu.dias[diaActivo]
 
   return (
     <div className="menu-page">
@@ -97,32 +28,32 @@ export default function Menu() {
         <div className="menu-avatar">LH</div>
         <div className="menu-topbar-text">
           <p>Hola,</p>
-          <h2>{userName}</h2>
+          <h2>{PERFIL.nombre}</h2>
         </div>
         <i className="ti ti-bell" />
       </div>
 
       <div className="week-strip">
-        {dias.map((dia, i) => (
+        {menu.dias.map((d, i) => (
           <button
-            key={dia.id}
+            key={i}
             className={`day-pill ${diaActivo === i ? 'active' : ''}`}
-            onClick={() => handleDia(i, dia.id)}
+            onClick={() => setDiaActivo(i)}
           >
-            <span>{diasLabels[i] || `D${i + 1}`}</span>
-            <span>{dia.numero_dia}</span>
+            <span>{diasLabels[i]}</span>
+            <span>{d.numero}</span>
           </button>
         ))}
       </div>
 
       <div className="menu-content">
         {TOMAS.map(toma => {
-          const tomaData = platos.find(t => t.tipo === toma.key)
-          if (!tomaData || !tomaData.platos.length) return null
+          const platos = dia.tomas[toma.key]
+          if (!platos || !platos.length) return null
           return (
             <div key={toma.key}>
               <p className="section-label">{toma.label}</p>
-              {tomaData.platos.map(plato => (
+              {platos.map(plato => (
                 <div
                   key={plato.id}
                   className="meal-card"
@@ -144,10 +75,7 @@ export default function Menu() {
       </div>
 
       {selectedPlato && (
-        <RecipeModal
-          plato={selectedPlato}
-          onClose={() => setSelectedPlato(null)}
-        />
+        <RecipeModal plato={selectedPlato} onClose={() => setSelectedPlato(null)} />
       )}
 
       <BottomNav />

@@ -1,62 +1,20 @@
-import { useEffect, useState } from 'react'
-import { supabase } from '../lib/supabase'
+import { useState, useMemo } from 'react'
+import { MENUS } from '../data/menus'
 import BottomNav from '../components/BottomNav'
 import './Compra.css'
 
-export default function Compra() {
-  const [items, setItems] = useState([])
+export default function Compra({ menuActivo }) {
   const [checked, setChecked] = useState({})
-  const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    fetchCompra()
-  }, [])
-
-  async function fetchCompra() {
-    const { data: { user } } = await supabase.auth.getUser()
-
-    const { data: asignacion } = await supabase
-      .from('asignaciones')
-      .select('menu_id')
-      .eq('cliente_id', user.id)
-      .eq('activo', true)
-      .single()
-
-    if (!asignacion) { setLoading(false); return }
-
-    const { data: dias } = await supabase
-      .from('menu_dias')
-      .select('id')
-      .eq('menu_id', asignacion.menu_id)
-
-    if (!dias) { setLoading(false); return }
-
-    const diaIds = dias.map(d => d.id)
-
-    const { data: tomas } = await supabase
-      .from('tomas')
-      .select('id')
-      .in('dia_id', diaIds)
-
-    if (!tomas) { setLoading(false); return }
-
-    const tomaIds = tomas.map(t => t.id)
-
-    const { data: platos } = await supabase
-      .from('platos')
-      .select('ingredientes')
-      .in('toma_id', tomaIds)
-
-    if (!platos) { setLoading(false); return }
-
-    // Extrae y agrupa ingredientes únicos
-    const todos = platos
-      .flatMap(p => p.ingredientes?.split(',').map(i => i.trim()).filter(Boolean) || [])
-
-    const unicos = [...new Set(todos)]
-    setItems(unicos)
-    setLoading(false)
-  }
+  const items = useMemo(() => {
+    const menu = MENUS[menuActivo]
+    const todos = menu.dias.flatMap(dia =>
+      Object.values(dia.tomas).flatMap(platos =>
+        platos.flatMap(p => p.ingredientes?.split(',').map(i => i.trim()).filter(Boolean) || [])
+      )
+    )
+    return [...new Set(todos)]
+  }, [menuActivo])
 
   function toggle(item) {
     setChecked(prev => ({ ...prev, [item]: !prev[item] }))
@@ -66,13 +24,11 @@ export default function Compra() {
   const checkedCount = Object.values(checked).filter(Boolean).length
   const pct = total > 0 ? Math.round((checkedCount / total) * 100) : 0
 
-  if (loading) return <div className="loading"><div className="spinner" /></div>
-
   return (
     <div className="compra-page">
       <div className="compra-header">
         <h1>Lista de la compra</h1>
-        <p>Semana activa</p>
+        <p>{MENUS[menuActivo].nombre}</p>
       </div>
 
       <div className="compra-progress">
@@ -86,25 +42,18 @@ export default function Compra() {
       </div>
 
       <div className="compra-content">
-        {items.length === 0 ? (
-          <div className="compra-empty">
-            <i className="ti ti-shopping-cart" />
-            <p>No hay ingredientes disponibles aún.</p>
-          </div>
-        ) : (
-          items.map(item => (
-            <div
-              key={item}
-              className={`compra-item ${checked[item] ? 'checked' : ''}`}
-              onClick={() => toggle(item)}
-            >
-              <div className={`check-circle ${checked[item] ? 'done' : ''}`}>
-                {checked[item] && <i className="ti ti-check" />}
-              </div>
-              <span>{item}</span>
+        {items.map(item => (
+          <div
+            key={item}
+            className={`compra-item ${checked[item] ? 'checked' : ''}`}
+            onClick={() => toggle(item)}
+          >
+            <div className={`check-circle ${checked[item] ? 'done' : ''}`}>
+              {checked[item] && <i className="ti ti-check" />}
             </div>
-          ))
-        )}
+            <span>{item}</span>
+          </div>
+        ))}
       </div>
 
       <BottomNav />
