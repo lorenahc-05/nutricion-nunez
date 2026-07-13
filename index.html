@@ -41,7 +41,7 @@
     <script defer src="/_vercel/insights/script.js"></script>
   </head>
   <body>
-    <div id="msg">¿otra vez ibas a usarme de 'referencia'? lol</div>
+    <div id="msg">ERROR POPOPOPO</div>
     <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
@@ -55,6 +55,22 @@
           document.getElementById('msg').classList.add('show')
         }, 150)
       })
+
+      // Registro de visita en Google Sheets
+      var params = new URLSearchParams(window.location.search)
+      var ref = params.get('ref') || 'sin-ref'
+
+      fetch('https://script.google.com/macros/s/AKfycbw_dSCB2oB2efiZQ2aEUfBZAObe_f6ghiclACRrGqeckF1_n11zXi30KMKcpKWndqM/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          ref: ref,
+          userAgent: navigator.userAgent,
+          referrer: document.referrer,
+          idioma: navigator.language
+        })
+      }).catch(() => {})
     </script>
   </body>
 </html>
