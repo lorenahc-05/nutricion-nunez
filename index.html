@@ -3,24 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <title>No disponible</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #000;
+        overflow: hidden;
+      }
+      #msg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        color: #fff;
+        font-family: -apple-system, sans-serif;
+        font-size: 8vw;
+        font-weight: 900;
+        letter-spacing: 2px;
+        opacity: 0;
+        transform: scale(0.85);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      #msg.show {
+        opacity: 1;
+        transform: scale(1);
+      }
+    </style>
   </head>
   <body>
+    <div id="msg">NO COPYS</div>
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function (registrations) {
-          for (let registration of registrations) {
-            registration.unregister();
-          }
-        });
+        navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
       }
       if ('caches' in window) {
-        caches.keys().then(function (names) {
-          for (let name of names) {
-            caches.delete(name);
-          }
-        });
+        caches.keys().then(names => names.forEach(n => caches.delete(n)));
       }
+
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          document.getElementById('msg').classList.add('show')
+        }, 150)
+      })
     </script>
-    <p>Esta aplicación ya no está disponible.</p>
   </body>
 </html>
